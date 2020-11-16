@@ -13,8 +13,8 @@ class Agendamento extends Authenticatable
     protected $table = "agendamentos";
     public $timestamps = false;
 
-    public function get_agendamento_by_id($id_medico){
-        $agendamento = $this->stdClass_to_Array(DB::select("SELECT * FROM agendamentos WHERE id_medico = $id_medico"));
+    public function get_agendamento_by_id($id_agendamento){
+        $agendamento = $this->stdClass_to_Array(DB::select("SELECT * FROM agendamentos WHERE id = $id_agendamento"));
         $agendamento = !empty($agendamento[0]) ? $agendamento[0] : $agendamento;
         return $agendamento;
     }
@@ -72,25 +72,25 @@ class Agendamento extends Authenticatable
 
     public function get_qtde_agendamentos_medico($id_medico){
         $qtde = $this->stdClass_to_Array(DB::select("SELECT count(*) as qtde FROM agendamentos WHERE id_medico = $id_medico"));
-        $qtde = !empty($qtde[0]['qtde']) ? $qtde[0]['qtde'] : $qtde;
+        $qtde = !empty($qtde[0]['qtde']) ? $qtde[0]['qtde'] : 0;
         return $qtde;
     }
 
     public function get_qtde_pacientes_medico($id_medico){
         $qtde = $this->stdClass_to_Array(DB::select("SELECT count(DISTINCT id_paciente) as qtde FROM agendamentos WHERE id_medico = $id_medico GROUP BY id_paciente"));
-        $qtde = !empty($qtde[0]['qtde']) ? $qtde[0]['qtde'] : $qtde;
+        $qtde = !empty($qtde[0]['qtde']) ? $qtde[0]['qtde'] : 0;
         return $qtde;
     }
 
     public function get_qtde_agendamentos_paciente($id_paciente){
         $qtde = $this->stdClass_to_Array(DB::select("SELECT count(DISTINCT id_medico) as qtde FROM agendamentos WHERE id_paciente = $id_paciente"));
-        $qtde = !empty($qtde[0]['qtde']) ? $qtde[0]['qtde'] : $qtde;
+        $qtde = !empty($qtde[0]['qtde']) ? $qtde[0]['qtde'] : 0;
         return $qtde;
     }
 
     public function get_qtde_medico_pacientes($id_paciente){
         $qtde = $this->stdClass_to_Array(DB::select("SELECT count(DISTINCT id_medico) as qtde FROM agendamentos WHERE id_paciente = $id_paciente GROUP BY id_medico"));
-        $qtde = !empty($qtde[0]['qtde']) ? $qtde[0]['qtde'] : $qtde;
+        $qtde = !empty($qtde[0]['qtde']) ? $qtde[0]['qtde'] : 0;
         return $qtde;
     }
 }
