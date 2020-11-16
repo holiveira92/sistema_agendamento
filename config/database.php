@@ -45,11 +45,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'app.galo.q4dev.com.br'),
+            'host' => env('DB_HOST', 'laravel.cfqwg2qjztrx.sa-east-1.rds.amazonaws.com'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'laravel'),
             'username' => env('DB_USERNAME', 'admin'),
-            'password' => env('DB_PASSWORD', '123456'),
+            'password' => env('DB_PASSWORD', 'lara421813'),
             'unix_socket' => env('DB_SOCKET', ''),
             /*
             'charset' => 'utf8mb4',
