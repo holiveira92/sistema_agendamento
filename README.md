@@ -11,18 +11,17 @@ Passos a rodar:
 * php artisan serve
 
 
-Exemplo AWS: Endpoint para API de Médicos para aplicativo de celular:
+Exemplo AWS: Endpoint para API de Médicos para aplicativo de celular:<br><br>
 
-Obs.: Enviar Headers: 
-Accept => application/json
+Obs.: Enviar Headers: <br>
+Accept => application/json<br>
 
-GET Lista: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico
-GET recurso específico: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico/{ID}
-DELETE recurso: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico/{ID}
-POST recurso: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico/
-body:
-{
-    "nome": "Dr. Nome do Médico",
+GET Lista: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico <br>
+GET recurso específico: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico/{ID} <br>
+DELETE recurso: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico/{ID} <br>
+POST recurso: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico/ <br>
+body: <br>
+{   "nome": "Dr. Nome do Médico", 
     "sexo": "Masculino",
     "data_nascimento": "1992-01-01",
     "especialidades": "pediatria",
@@ -33,8 +32,9 @@ body:
     "cidade": "Belo Horizonte",
     "cep": "12345678910"
 }
-PUT recurso: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico/{ID}
-body:
+<br>
+PUT recurso: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico/{ID} <br>
+body: <br>
 {
     "nome": "Dr. Nome do Médico",
     "sexo": "Masculino",
