@@ -19,8 +19,7 @@ class UserController extends Controller{
     }
 
     /**
-     * Show the application dashboard.
-     * @return \Illuminate\Contracts\Support\Renderable
+     * Endpoint para listagem de informações de usuário utilizados na view
     */
     public function index(){   
         $usuarios = $this->user->get_all();
@@ -28,8 +27,7 @@ class UserController extends Controller{
     }
 
     /**
-     * Show the application dashboard.
-     * @return \Illuminate\Contracts\Support\Renderable
+     * endpoint para edição de informações utilizados na view
     */
     public function edit($user_id){
         $usuario = $this->user->get_user_by_id($user_id);
@@ -37,9 +35,7 @@ class UserController extends Controller{
     }
 
     /**
-     * Update a new user instance after a valid registration.
-     * @param  array  $data
-     * @return \App\Models\User
+     * Endpoint para atualização de usuário utilizados na view
      */
     public function update(Request $request){   
         $user_id                = $request->input('user_id');
@@ -61,9 +57,7 @@ class UserController extends Controller{
     }
 
     /**
-     * Delete a user instance after a valid registration.
-     * @param  array  $data
-     * @return \App\Models\User
+     * Endpoint para remoção de registros utilizados na view
      */
     public function delete($user_id){   
         $this->user->delete_data($user_id);

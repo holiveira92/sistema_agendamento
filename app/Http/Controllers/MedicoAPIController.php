@@ -5,19 +5,33 @@ use App\Models\Medico;
 
 class MedicoAPIController extends Controller{
     
+    /**
+     * Create a new controller instance.
+     * @return void
+    */
     public function __construct(){
+        //Instâncias de classes necessárias
         $this->medico = new Medico();
     }
 
+    /**
+     * Endpoint para listagem de informações de agendamentos utilizados na API
+    */
     public function index(){
         return Medico::all();
     }
 
+    /**
+     * Endpoint para listagem de informações especificas de um médico na API
+    */
     public function show($id){
         $medico = $this->medico->get_medico_by_id($id);
         return response()->json($medico, 201);
     }
 
+    /**
+     * Endpoint para inserção de informações de um médico na API
+    */
     public function insert(Request $request){
         $dados                  = array(
             'nome'              => empty(request('nome')) ? '' : request('nome'),
@@ -35,6 +49,9 @@ class MedicoAPIController extends Controller{
         return response()->json($dados, 200);
     }
 
+    /**
+     * Endpoint para atualização de informações de um médico na API
+    */
     public function update(Request $request, $id){
         $dados                  = array(
             'id'                => empty($id) ? '' : $id,
@@ -53,6 +70,9 @@ class MedicoAPIController extends Controller{
         return response()->json($dados, 200);
     }
 
+    /**
+     * Endpoint para removação de um médico na API
+    */
     public function delete($id){
         $this->medico->delete_data($id);
         return response()->json(null, 204);

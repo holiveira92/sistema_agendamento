@@ -17,16 +17,16 @@ class MedicoController extends Controller{
      * @return void
     */
     public function __construct(){
-        $this->user     = new User();
-        $this->agendamento     = new Agendamento();
-        $this->medico     = new Medico();
-        $this->paciente     = new Paciente();
+        //Instâncias de classes necessárias
+        $this->user             = new User();
+        $this->agendamento      = new Agendamento();
+        $this->medico           = new Medico();
+        $this->paciente         = new Paciente();
         $this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
-     * @return \Illuminate\Contracts\Support\Renderable
+     * Endpoint para listagem de informações de médicos utilizados na view
     */
     public function index(){   
         $medicos = $this->medico->get_all();
@@ -34,8 +34,7 @@ class MedicoController extends Controller{
     }
 
     /**
-     * Show the application dashboard.
-     * @return \Illuminate\Contracts\Support\Renderable
+     * endpoint para edição de informações utilizados na view
     */
     public function edit($medico_id){
         $medico                 = $this->medico->get_medico_by_id($medico_id);
@@ -60,9 +59,7 @@ class MedicoController extends Controller{
     }
 
     /**
-     * Update a new user instance after a valid registration.
-     * @param  array  $data
-     * @return \App\Models\User
+     * Endpoint para atualização de médico utilizados na view
      */
     public function update($id){  
         $nome                       = request('nome');
@@ -88,9 +85,7 @@ class MedicoController extends Controller{
     }
 
     /**
-     * Delete a user instance after a valid registration.
-     * @param  array  $data
-     * @return \App\Models\User
+     * Endpoint para remoção de registros utilizados na view
      */
     public function delete($medico_id){   
         $this->medico->delete_data($medico_id);

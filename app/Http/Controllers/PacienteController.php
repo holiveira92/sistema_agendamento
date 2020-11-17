@@ -17,25 +17,24 @@ class PacienteController extends Controller{
      * @return void
     */
     public function __construct(){
-        $this->user     = new User();
-        $this->agendamento     = new Agendamento();
-        $this->medico     = new Medico();
-        $this->paciente     = new Paciente();
+        //Instâncias de classes necessárias
+        $this->user             = new User();
+        $this->agendamento      = new Agendamento();
+        $this->medico           = new Medico();
+        $this->paciente         = new Paciente();
         $this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
-     * @return \Illuminate\Contracts\Support\Renderable
+     * Endpoint para listagem de informações de pacientes utilizados na view
     */
     public function index(){   
         $pacientes = $this->paciente->get_all();
         return view('paciente/index', ['pacientes' =>$pacientes] );
     }
 
-    /**
-     * Show the application dashboard.
-     * @return \Illuminate\Contracts\Support\Renderable
+     /**
+     * endpoint para edição de informações utilizados na view
     */
     public function edit($paciente_id){
         $paciente               = $this->paciente->get_paciente_by_id($paciente_id);
@@ -60,9 +59,7 @@ class PacienteController extends Controller{
     }
 
     /**
-     * Update a new user instance after a valid registration.
-     * @param  array  $data
-     * @return \App\Models\User
+     * Endpoint para atualização de paciente utilizados na view
      */
     public function update($id){  
         $nome                       = request('nome');
@@ -86,9 +83,7 @@ class PacienteController extends Controller{
     }
 
     /**
-     * Delete a user instance after a valid registration.
-     * @param  array  $data
-     * @return \App\Models\User
+     * Endpoint para remoção de registros utilizados na view
      */
     public function delete($paciente_id){   
         $this->paciente->delete_data($paciente_id);

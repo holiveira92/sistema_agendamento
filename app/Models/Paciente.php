@@ -15,6 +15,10 @@ class Paciente extends Authenticatable
     protected $fillable = [
         'nome',
     ];
+
+    /**
+     * obtém dados do paciente por ID
+     */
     public function get_paciente_by_id($paciente_id){
         $paciente = $this->stdClass_to_Array(
             DB::table('paciente')
@@ -25,6 +29,9 @@ class Paciente extends Authenticatable
         return $paciente;
     }
 
+    /**
+     * obtém coleção de dados dos pacientes cadastrados
+     */
     public function get_pacientes(){
         $pacientes = $this->stdClass_to_Array(
                 DB::table('paciente')
@@ -35,8 +42,6 @@ class Paciente extends Authenticatable
 
     /**
      * Converte um array stdclass para um array associativo
-     * @param  array  $data
-     * @return \App\Models\User
      */
     public function stdClass_to_Array($array){
         $array = array_map(function($result){
@@ -45,6 +50,9 @@ class Paciente extends Authenticatable
         return $array;
     }
 
+    /**
+     * Persistência de dados
+     */
     public function save_from_data($data){
         $medico                   = $this->find($data['id']);
         if(!empty($data['id'])){
@@ -74,6 +82,9 @@ class Paciente extends Authenticatable
         return $id;
     }
 
+    /**
+     * delete registro do BD
+     */
     public function delete_data($medico_id){
         $paciente = $this->find($medico_id);
         if(!empty($paciente->id)){
@@ -81,6 +92,9 @@ class Paciente extends Authenticatable
         }
     }
 
+    /**
+     * Obtém toda a coleção de dados do BD
+     */
     public function get_all(){
         $pacientes = $this->get()->toArray();
         return $pacientes;

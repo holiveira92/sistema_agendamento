@@ -13,6 +13,9 @@ class Agendamento extends Authenticatable
     protected $table = "agendamentos";
     public $timestamps = false;
 
+    /**
+     * obtém dados de agendamento por ID
+     */
     public function get_agendamento_by_id($id_agendamento){
         $agendamento = $this->stdClass_to_Array(DB::select("SELECT * FROM agendamentos WHERE id = $id_agendamento"));
         $agendamento = !empty($agendamento[0]) ? $agendamento[0] : $agendamento;
@@ -21,8 +24,6 @@ class Agendamento extends Authenticatable
 
     /**
      * Converte um array stdclass para um array associativo
-     * @param  array  $data
-     * @return \App\Models\User
      */
     public function stdClass_to_Array($array){
         $array = array_map(function($result){
@@ -31,6 +32,9 @@ class Agendamento extends Authenticatable
         return $array;
     }
 
+    /**
+     * Persistência de dados
+     */
     public function save_from_data($data){
         $agendamento                    = $this->find($data['id']);
         $horario_inicio                 = date('Y-m-d H:i',strtotime(str_replace("/", "-", $data["horario_inicio"])));
@@ -53,6 +57,9 @@ class Agendamento extends Authenticatable
         return $id;
     }
 
+    /**
+     * delete registro do BD
+     */
     public function delete_data($agendamento_id){
         $agendamento = $this->find($agendamento_id);
         if(!empty($agendamento->id)){
@@ -60,6 +67,9 @@ class Agendamento extends Authenticatable
         }
     }
 
+    /**
+     * Obtém toda a coleção de dados do BD
+     */
     public function get_all(){
         $agendamentos = DB::table('agendamentos')
             ->leftJoin('medico', 'agendamentos.id_medico', '=', 'medico.id')
@@ -70,24 +80,36 @@ class Agendamento extends Authenticatable
         return $agendamentos;
     }
 
+    /**
+     * Obtém qtde de agendamentos realizados por um médico
+     */
     public function get_qtde_agendamentos_medico($id_medico){
         $qtde = $this->stdClass_to_Array(DB::select("SELECT count(*) as qtde FROM agendamentos WHERE id_medico = $id_medico"));
         $qtde = !empty($qtde[0]['qtde']) ? $qtde[0]['qtde'] : 0;
         return $qtde;
     }
 
+    /**
+     * Obtém qtde de pacientes atendidos por um médico
+     */
     public function get_qtde_pacientes_medico($id_medico){
         $qtde = $this->stdClass_to_Array(DB::select("SELECT count(DISTINCT id_paciente) as qtde FROM agendamentos WHERE id_medico = $id_medico GROUP BY id_paciente"));
         $qtde = !empty($qtde[0]['qtde']) ? $qtde[0]['qtde'] : 0;
         return $qtde;
     }
 
+    /**
+     * Obtém qtde de agendamentos realizados por um paciente
+     */
     public function get_qtde_agendamentos_paciente($id_paciente){
         $qtde = $this->stdClass_to_Array(DB::select("SELECT count(DISTINCT id_medico) as qtde FROM agendamentos WHERE id_paciente = $id_paciente"));
         $qtde = !empty($qtde[0]['qtde']) ? $qtde[0]['qtde'] : 0;
         return $qtde;
     }
 
+    /**
+     * Obtém qtde de médicos que atenderam paciente
+     */
     public function get_qtde_medico_pacientes($id_paciente){
         $qtde = $this->stdClass_to_Array(DB::select("SELECT count(DISTINCT id_medico) as qtde FROM agendamentos WHERE id_paciente = $id_paciente GROUP BY id_medico"));
         $qtde = !empty($qtde[0]['qtde']) ? $qtde[0]['qtde'] : 0;
