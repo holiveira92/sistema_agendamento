@@ -1,3 +1,5 @@
+Sistema hospedado na AWS EC2: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com/
+
 Passos a rodar:
 * Clonar repo
 * Verificar se depenências estão habilitadas e instaladas
@@ -16,10 +18,10 @@ Exemplo AWS: Endpoint para API de Médicos para aplicativo de celular:<br><br>
 Obs.: Enviar Headers: <br>
 Accept => application/json<br>
 
-GET Lista: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico <br>
-GET recurso específico: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico/{ID} <br>
-DELETE recurso: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico/{ID} <br>
-POST recurso: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico/ <br>
+GET Lista: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com/api/medico <br>
+GET recurso específico: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com/api/medico/{ID} <br>
+DELETE recurso: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com/api/medico/{ID} <br>
+POST recurso: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com/api/medico/ <br>
 body: <br>
 {   "nome": "Dr. Nome do Médico", 
     "sexo": "Masculino",
@@ -33,7 +35,7 @@ body: <br>
     "cep": "12345678910"
 }
 <br>
-PUT recurso: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com:8000/api/medico/{ID} <br>
+PUT recurso: http://ec2-18-231-167-244.sa-east-1.compute.amazonaws.com/api/medico/{ID} <br>
 body: <br>
 {
     "nome": "Dr. Nome do Médico",
