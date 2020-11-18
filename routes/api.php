@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-Use App\Models\Medico;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +23,10 @@ Route::get('medico/{id}', [App\Http\Controllers\MedicoAPIController::class, 'sho
 Route::post('medico', [App\Http\Controllers\MedicoAPIController::class, 'insert']);
 Route::put('medico/{id}', [App\Http\Controllers\MedicoAPIController::class, 'update']);
 Route::delete('medico/{id}', [App\Http\Controllers\MedicoAPIController::class, 'delete']);
+
+//tratrando barra
+Route::get('medico/', [App\Http\Controllers\MedicoAPIController::class, 'index']);
+Route::get('medico/{id}/', [App\Http\Controllers\MedicoAPIController::class, 'show']);
+Route::post('medico/', [App\Http\Controllers\MedicoAPIController::class, 'insert']);
+Route::put('medico/{id}/', [App\Http\Controllers\MedicoAPIController::class, 'update']);
+Route::delete('medico/{id}/', [App\Http\Controllers\MedicoAPIController::class, 'delete']);

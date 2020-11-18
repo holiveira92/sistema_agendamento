@@ -18,7 +18,8 @@ class MedicoAPIController extends Controller{
      * Endpoint para listagem de informações de agendamentos utilizados na API
     */
     public function index(){
-        return Medico::all();
+        $medico = $this->medico->get_all();
+        return response()->json($medico, 201);
     }
 
     /**

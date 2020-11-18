@@ -54,8 +54,9 @@ class Medico extends Authenticatable
      * Persistência de dados
      */
     public function save_from_data($data){
+        $data['id']               = (!empty($data['id'])) ? $data['id'] : 0;
         $medico                   = $this->find($data['id']);
-        if(!empty($data['id'])){
+        if(!empty($medico->id)){
             $medico->nome               = $data['nome'];
             $medico->sexo               = $data['sexo'];
             $medico->data_nascimento    = $data['data_nascimento'];
@@ -67,7 +68,7 @@ class Medico extends Authenticatable
             $medico->cidade             = $data['cidade'];
             $medico->cep                = $data['cep'];
             $medico->save();
-            $id                         = $data['id'];
+            $id                         = $medico->id;
         }else{
             //var_dump($data['data_nascimento']);die;
             $medico_id = DB::table('medico')->insertGetId(array(
